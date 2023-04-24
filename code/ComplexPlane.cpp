@@ -25,7 +25,10 @@ void ComplexPlane::zoomIn()
 }
 void ComplexPlane::zoomOut()
 {
-
+    m_zoomCount--;
+    float x_size = BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount));
+    float y_size = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount));
+    m_view.setSize(x_size, y_size);
 
 }
 void ComplexPlane::setCenter(Vector2f coord)
