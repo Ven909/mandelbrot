@@ -8,38 +8,38 @@ using namespace sf;
 
 ComplexPlane::ComplexPlane(float aspectRatio)
 {
-   m_aspectRatio = aspectRatio;
-   m_view.setSize(BASE_WIDTH, -BASE_HEIGHT * m_aspectRatio); 
-   m_view.setCenter(0.0, 0.0);
-   m_zoomCount = 0;
+   m_aspectRatio = aspectRatio;  //set the aspectRatio into m_aspectRatio
+   m_view.setSize(BASE_WIDTH, -BASE_HEIGHT * m_aspectRatio);  //using global variable to define the size
+   m_view.setCenter(0.0, 0.0);   //set center at 0, 0
+   m_zoomCount = 0;              //set zoom count to 0
 }
 View ComplexPlane::getView()
 {
-   return m_view;
+   return m_view;      //getter method to get the view
 }
 void ComplexPlane::zoomIn()
 {
    m_zoomCount++;
-   float x_size = BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount));
-   float y_size = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount));
-   m_view.setSize(x_size, y_size);
+   float x_size = BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount));      //using zoom in formula for the x dimension
+   float y_size = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount));   //using zoom in formula for the y dimension
+   m_view.setSize(x_size, y_size);   //set the now zoomed in dimensions
 
 }
 void ComplexPlane::zoomOut()
 {
    m_zoomCount--;
-   float x_size = BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount));
-   float y_size = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount));
-   m_view.setSize(x_size, y_size);
+   float x_size = BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount));     //using zoom out formula for the x dimension
+   float y_size = BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount));    //using zoom out formula for the y dimension
+   m_view.setSize(x_size, y_size);    //set the now zoomed out dimensions
 
 }
 void ComplexPlane::setCenter(Vector2f coord)
 {
-   m_view.setCenter(coord);
+   m_view.setCenter(coord);			//set the center at the given coordinate
 }
 void ComplexPlane::setMouseLocation(Vector2f coord)
 {
-   m_mouseLocation = coord;
+   m_mouseLocation = coord;			//store the given coordinate in m_mouseLocation
 }
 void ComplexPlane::loadText(Text& text)
 {
@@ -64,7 +64,7 @@ size_t ComplexPlane::countIterations(Vector2f coord)
    complex<double> z(0,0);
    size_t count = 0;
 
-   //do it until max iterations z surpasses the radius 2
+   //do it until max iterations or z surpasses the radius 2
    while(abs(z) < 2 && count < MAX_ITER)
    {  
       z = z*z + c;
@@ -77,37 +77,37 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
    //creating a color scheme
    //simple color scheme
-   if(count == MAX_ITER)
+   if(count == MAX_ITER)	//At MAX_ITER color the pixel black
   {
     r = 0;
     g = 0;
     b = 0;
   }
-  else if(count < 10)
+  else if(count < 10)		//purple
   {
     r = 127;
     g = 0;
     b = 255;
   }
-  else if(count < 20)
+  else if(count < 20)		//just green
   {
     r = 0;
     g = 255;
     b = 0;
   }
-  else if(count < 30)
+  else if(count < 30)		//just blue
   {   
     r = 0;
     g = 0;
     b = 255;
   }
-  else if(count < 40)
+  else if(count < 40)		//yellow
   {
     r = 255;
     g = 255;
     b = 0;
   }
-  else if(count < 50)
+  else if(count < 50)		//fully red
   {
     r = 255;
     g = 0;
