@@ -39,7 +39,7 @@ void ComplexPlane::setCenter(Vector2f coord)
 }
 void ComplexPlane::setMouseLocation(Vector2f coord)
 {
-   m_mouseLocation = coord;			//store the given coordinate in m_mouseLocation
+   m_mouseLocation = coord;			//store the given coordination in m_mouseLocation
 }
 void ComplexPlane::loadText(Text& text)
 {
