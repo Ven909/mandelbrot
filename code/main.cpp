@@ -72,7 +72,7 @@ int main()
             //find the Vector2f coordinates in the ComplexPlane view that corresponds to the mouse location
             Vector2f pos = window.mapPixelToCoords(Mouse::getPosition(window), plane.getView());
 
-            //setMouseLocation on the ComplexPlane object to store this coordinate
+            //setMouseLocation on the ComplexPlane object to store this coordination
             plane.setMouseLocation(pos);
          } 
       }
